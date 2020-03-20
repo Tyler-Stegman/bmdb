@@ -18,6 +18,8 @@ create table actor (
     birthDate		date			not null
     );
 
+-- example for above: CONSTRAINT unq_actor unique (FirstName, LastName, BirthDate) --  if you don't want an actor to repeat multiple times.
+
 create table credit (
 	id				int				primary key auto_increment,
     actorID			int				not null,
@@ -25,21 +27,29 @@ create table credit (
     role			varchar(25)		not null,
     FOREIGN KEY (actorID) REFERENCES actor(id),
 	FOREIGN KEY (movieID) REFERENCES movie(id),
-    CONSTRAINT std_actor unique (actorID, movieID)
+    CONSTRAINT act_mov unique (actorID, movieID)
     );
     
 insert into movie (id, title, year, rating, director) 
-	values (1, 'Indiana Jones and the Last Crusade', 1989, 8.2, 'Steven Spielberg');
+	values (1, 'Indiana Jones and the Last Crusade', 1989, 'PG-13', 'Steven Spielberg');
 insert into movie (id, title, year, rating, director)
-	values (2, 'The Pianist', 2002, 8.5, 'Roman Polanski');
+	values (2, 'The Pianist', 2002, 'R', 'Roman Polanski');
     
 insert into actor (id, firstName, lastName, gender, birthDate)
 	values (1, 'Harrison', 'Ford', 'Male', '1942-07-13');
 insert into actor (id, firstName, lastName, gender, birthDate)
 	values (2, 'Adrian', 'Brody', 'Male', '1973-04-14');
+insert into actor (id, firstName, lastName, gender, birthDate)
+	values (3, 'John', 'Rhys-Davies', 'Male', '1944-05-05');
+insert into actor (id, firstName, lastName, gender, birthDate)
+	values (4, 'Thomas', 'Kretschmann', 'Male', '1962-08-08');
     
-insert into credit (id, actorID, movieID, role)
-	values (1, 1, 1, 'Indiana Jones');
-insert into credit (id, actorID, movieID, role)
-	values (2, 2, 2, 'Wladyslaw Szpilman');
+insert into credit (actorID, movieID, role)
+	values (1, 1, 'Indiana Jones');
+insert into credit (actorID, movieID, role)
+	values (2, 2, 'Wladyslaw Szpilman');
+insert into credit (actorID, movieID, role)
+	values (3, 1, 'Sallah');
+insert into credit (actorID, movieID, role)
+	values (4, 2, 'Captain Wilm Hosenfeld');
 

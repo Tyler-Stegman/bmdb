@@ -10,7 +10,7 @@ select firstName, lastName, gender, title, year, rating
         
 -- join 3 test
         
-select firstName, lastName, gender, title, year
+select firstName, lastName, gender, title, role, year
 	from actor a 
     join credit c  
 		on a.id = c.id
